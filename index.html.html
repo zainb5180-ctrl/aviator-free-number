@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aviator Ads-Coin Simulator</title>
+<style>
+body { font-family: Arial,sans-serif; background:#0f172a; color:white; text-align:center; padding:20px; }
+section { margin:20px auto; max-width:500px; text-align:left; }
+button { margin:5px; padding:10px 20px; background:#22c55e; color:white; border:none; border-radius:5px; cursor:pointer;}
+input { width:80%; padding:10px; border-radius:5px; border:none; margin:10px 0;}
+.ad-box { background:#334155; padding:15px; margin:15px 0; border-radius:8px; text-align:center;}
+#wallet { color:#22c55e; font-weight:bold;}
+#result { margin-top:10px; font-size:18px;}
+#testBtn { background:#facc15; color:black; }
+</style>
+</head>
+<body>
+
+<h1>✈️ Aviator Ads-Coin Simulator</h1>
+
+<!-- Disclaimer -->
+<section style="background:#1e293b; padding:15px; border-radius:8px;">
+<h2>⚠️ Disclaimer</h2>
+<p>
+This tool is for educational and entertainment purposes only.  
+No real money or financial transactions are involved.  
+Coins and Ads are purely for simulation purposes.
+</p>
+</section>
+
+<!-- Wallet Section -->
+<section>
+<h2>💰 Wallet</h2>
+<p>Current Coin Balance: <span id="wallet">0</span></p>
+</section>
+
+<!-- Ads Section -->
+<section>
+<h2>📺 Watch Ads to Earn Coins</h2>
+<p>Each Ad gives <strong>5 Coins</strong>.</p>
+<div class="ad-box">
+<p>Ad Placeholder 1</p>
+<button onclick="watchAd()">Watch Ad</button>
+</div>
+<div class="ad-box">
+<p>Ad Placeholder 2</p>
+<button onclick="watchAd()">Watch Ad</button>
+</div>
+<div class="ad-box">
+<p>Ad Placeholder 3</p>
+<button onclick="watchAd()">Watch Ad</button>
+</div>
+<div class="ad-box">
+<p>Ad Placeholder 4</p>
+<button onclick="watchAd()">Watch Ad</button>
+</div>
+<div class="ad-box">
+<p>Ad Placeholder 5</p>
+<button onclick="watchAd()">Watch Ad</button>
+</div>
+<div class="ad-box">
+<p>Ad Placeholder 6</p>
+<button onclick="watchAd()">Watch Ad</button>
+</div>
+</section>
+
+<!-- Test Section -->
+<section>
+<h2>🚀 Test Run</h2>
+<p>Minimum <strong>30 Coins</strong> required to run the Test.</p>
+<button id="testBtn" onclick="runTest()" disabled>Run Test</button>
+<div id="testResult"></div>
+</section>
+
+<script>
+// Wallet & Coins
+let walletBalance = 0;
+const walletEl = document.getElementById('wallet');
+const testBtn = document.getElementById('testBtn');
+const testResult = document.getElementById('testResult');
+
+// Function: Watch Ad
+function watchAd(){
+    walletBalance += 5;
+    walletEl.innerText = walletBalance;
+    updateTestButton();
+    alert("✅ You earned 5 Coins! Total: " + walletBalance);
+}
+
+// Enable Test Button if Coins >= 30
+function updateTestButton(){
+    if(walletBalance >= 30){
+        testBtn.disabled = false;
+    }
+}
+
+// Run Test
+function runTest(){
+    if(walletBalance < 30){
+        alert("❌ You need at least 30 Coins to run the Test.");
+        return;
+    }
+    walletBalance -= 30; // Consume coins
+    walletEl.innerText = walletBalance;
+    testResult.innerHTML = "🚀 Test started! 30 Coins consumed.";
+    testBtn.disabled = true; // Disable until next threshold
+}
+</script>
+
+</body>
+</html>
